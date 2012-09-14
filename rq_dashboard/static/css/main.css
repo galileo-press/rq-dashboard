@@ -44,6 +44,14 @@ h1 strong.failed {
     text-shadow: 0 -1px #922;
 }
 
+h1 strong.started {
+    color: #B45F04;
+}
+
+h1 strong.finished {
+    color: #298A08;
+}
+
 table, table tr, table tr td {
     background-color: snow;
 }
@@ -106,11 +114,27 @@ table tr.failed {
     border-top: 2px solid red;
 }
 
+table tr.started {
+    color: #B45F04;
+}
+
+table tr.finished {
+    color: #298A08;
+}
+
 table tr.failed a {
     color: red;
 }
 
-table tr.failed td {
+table tr.started a {
+    color: #B45F04;
+}
+
+table tr.finished a {
+    color: #298A08;
+}
+
+table tr.failed td, table tr.started td, table tr.finished td {
     background-color: lightgoldenrodyellow;
 }
 

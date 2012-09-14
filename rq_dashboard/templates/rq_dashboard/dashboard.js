@@ -57,24 +57,41 @@ var api = {
             $tbody.empty();
 
             if (queues.length > 0) {
-                var $fq;
+                var $fq, $sq, $fiq;
                 $.each(queues, function(i, queue) {
                     var html = template(queue);
                     var $el = $(html);
 
-                    // Special markup for the failed queue
+                    // Special markup for the failed and started queue
                     if (queue.name === 'failed' && queue.count > 0) {
                         $el.addClass('failed');
                         $fq = $el;
+                        return;
+                    }
+                    if (queue.name === 'started' && queue.count > 0) {
+                        $el.addClass('started');
+                        $sq = $el;
+                        return;
+                    }
+
+                    if (queue.name === 'finished' && queue.count > 0) {
+                        $el.addClass('finished');
+                        $fiq = $el;
                         return;
                     }
 
                     $tbody.append($el);
                 });
 
-                // Append the failed queue at the end, since it's a special queue
+                // Append the failed and started queue at the end, since it's a special queue
                 if ($fq !== undefined) {
                     $tbody.append($fq);
+                }
+                if ($sq !== undefined) {
+                    $tbody.append($sq);
+                }
+                if ($fiq !== undefined) {
+                    $tbody.append($fiq);
                 }
             } else {
                 var html = $('script[name=no-queues-row]').html();
